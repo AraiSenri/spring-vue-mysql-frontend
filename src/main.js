@@ -21,9 +21,9 @@ app.use(router, VueDraggable)
 
 app.mount('#app')
 
-const instance = axios.create({
+/* const instance = axios.create({
   baseURL: 'http://127.0.0.1:8080/'
-})
+}) */
 
-const res = await instance.get('/1')
-console.log(res)
+/* const res = await instance.get('/1')
+console.log(res) */
