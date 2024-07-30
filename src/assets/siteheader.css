@@ -1,0 +1,18 @@
+body {
+  font-family: Arial, sans-serif;
+  place-content: center;
+  place-items: center;
+}
+
+header {
+  background-color: #098db5;
+  color: white;
+  padding: 10px 0;
+  margin-bottom: 20px;
+}
+
+#title {
+  margin: 0;
+  padding: 0;
+  font-size: 24px;
+}

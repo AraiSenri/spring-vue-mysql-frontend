@@ -1,16 +1,10 @@
 <template>
-  <div>
-    <HeaderSample></HeaderSample>
-    <!-- <Header v-bind:username="name"></Header> -->
-    <!--     <Body></Body>
-    <Body></Body> -->
-  </div>
+  <site-header></site-header>
+  <router-view></router-view>
 </template>
 
 <script>
-// import Header from './components/Header.vue'
-import HeaderSample from './components/HeaderSample.vue'
-// import Body from './components/Body.vue'
+import SiteHeader from './components/SiteHeader.vue'
 
 export default {
   /* data() {
@@ -19,9 +13,7 @@ export default {
     }
   }, */
   components: {
-    // Header
-    // Body
-    HeaderSample
+    SiteHeader
   }
 }
 </script>

@@ -10,5 +10,9 @@ export default defineConfig({
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
+  },
+  components: {
+    global: true,
+    dirs: ['~/components']
   }
 })

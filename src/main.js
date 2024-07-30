@@ -7,9 +7,10 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import router from './router'
 
-import axios, { Axios } from 'axios'
+import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueDraggable from 'vue-draggable'
+import { marked } from 'marked'
 
 const app = createApp(App)
 // const cors = require('cors')
@@ -17,7 +18,7 @@ const app = createApp(App)
 
 app.use(VueAxios, axios)
 
-app.use(router, VueDraggable)
+app.use(router, VueDraggable, marked)
 
 app.mount('#app')
 
