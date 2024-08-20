@@ -98,6 +98,9 @@ export default {
   max-width: 800px;
   margin: auto;
   padding: 20px;
+
+  border: 1px solid #a7a4a4;
+  width: auto;
 }
 
 .post h1 {
@@ -164,6 +167,9 @@ li {
 
 section.post {
   margin-bottom: 30px;
+  border: 1px solid #eee;
+  box-sizing: content-box;
+  width: 100%;
 }
 
 .post-header {
@@ -172,7 +178,11 @@ section.post {
   align-items: center;
   border-bottom: 1px solid #eee;
   padding-bottom: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 25px;
+}
+
+.post-header h1 {
+  margin-top: 20%;
 }
 
 .author-info {
@@ -184,18 +194,20 @@ section.post {
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  border: 1px solid #eee;
   margin-right: 10px;
 }
 
 .post-date {
-  font-size: 14px;
+  float: right;
+  font-size: 10px;
   color: #999;
 }
 
 .post-content {
   border: 1px solid #eee;
   padding: 20px;
-  margin-top: 20px;
+  margin-top: 30px;
   border-radius: 10px;
 }
 
@@ -203,7 +215,13 @@ section.post {
   display: flex;
   justify-content: space-between;
   margin-top: 20px;
+  align-content: center;
   color: #999;
+}
+
+.post-navigation span {
+  font-size: small;
+  margin-right: 30px;
 }
 
 .profile-comments {

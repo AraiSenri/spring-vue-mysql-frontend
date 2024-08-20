@@ -190,6 +190,7 @@ li {
 
 section.profile {
   margin-bottom: 30px;
+  border: 1px solid #eee;
 }
 
 section.profile h3 {
@@ -250,6 +251,7 @@ section.comments h3 {
 .comment {
   border: 1px solid #eee;
   padding: 10px;
+  border: 1px solid #eee;
   border-radius: 10px;
   display: flex;
   align-items: center;

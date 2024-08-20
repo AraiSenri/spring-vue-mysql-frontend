@@ -14,6 +14,24 @@
         v-model="editBlogData.editBlogSubject"
       />
     </div>
+    <!-- <input-tab></input-tab> -->
+    <div id="keyword">
+      <p>タグ</p>
+      <div class="input-grid">
+        <div class="input-group" v-for="(input, index) in tagInputs" :key="input.id">
+          <input type="text" v-model="input.value" maxlength="50" placeholder="タグ" />
+          <!-- :placeholder="'Text Input ' + input.id" -->
+          <button
+            @click="addInput"
+            :class="{ 'add-keyword': true, disabled: tagInputs.length >= 9 }"
+            v-if="index === 0"
+          >
+            +
+          </button>
+          <button @click="removeInput(input.id)" v-else class="delete-keyword">-</button>
+        </div>
+      </div>
+    </div>
     <div id="blog-editor">
       <p>本文入力</p>
       <textarea
@@ -32,32 +50,88 @@
 
 <script>
 import axios from 'axios'
+import { ref } from 'vue'
 export default {
-  data() {
-    return {
-      editBlogData: {
-        editBlogSubject: '',
-        editBlogBody: ''
+  // data() {
+  //   return {
+  //     editBlogData: {
+  //       editBlogSubject: '',
+  //       editBlogBody: '',
+  //       editBlogTags: []
+  //     }
+  //   }
+  // },
+  // methods: {
+  //   async save() {
+  //     let formData = new FormData()
+  //     //formData.append('editBlogSubject', this.editBlogSubject)
+  //     //formData.append('editBlogBody', this.editBlogBody)
+  //     const tags = this.tagInputs.value.map((input) => input.value)
+  //     this.editBlogTags = {
+  //       list: tags
+  //     }
+
+  //     formData.append(
+  //       'jsonValue',
+  //       new Blob([JSON.stringify(this.editBlogData)], { type: 'application/json' })
+  //     )
+  //     const instance = axios.create({
+  //       baseURL: 'http://127.0.0.1:8080/'
+  //     })
+  //     console.log(instance)
+  //     //const res = await instance.post('/edit/save', formData)
+  //     instance.post('/edit/save', formData)
+  //     console.log('end')
+  //     //console.log(res)
+  //   }
+  // }
+  setup() {
+    const tagInputs = ref([{ id: 1, value: '' }])
+    const editBlogData = ref({
+      editBlogSubject: '',
+      editBlogBody: '',
+      editBlogTags: []
+    })
+    let idCounter = 2
+
+    const addInput = () => {
+      if (tagInputs.value.length < 9) {
+        tagInputs.value.push({ id: idCounter++, value: '' })
       }
     }
-  },
-  methods: {
-    async save() {
+
+    const removeInput = (id) => {
+      tagInputs.value = tagInputs.value.filter((input) => input.id !== id)
+    }
+
+    const save = async () => {
       let formData = new FormData()
-      //formData.append('editBlogSubject', this.editBlogSubject)
-      //formData.append('editBlogBody', this.editBlogBody)
+      const tags = tagInputs.value.map((input) => input.value)
+      editBlogData.value.editBlogTags = {
+        list: tags
+      }
+
       formData.append(
         'jsonValue',
-        new Blob([JSON.stringify(this.editBlogData)], { type: 'application/json' })
+        new Blob([JSON.stringify(editBlogData.value)], { type: 'application/json' })
       )
       const instance = axios.create({
         baseURL: 'http://127.0.0.1:8080/'
       })
       console.log(instance)
+      console.log(editBlogData)
       //const res = await instance.post('/edit/save', formData)
       instance.post('/edit/save', formData)
       console.log('end')
       //console.log(res)
+    }
+
+    return {
+      tagInputs,
+      addInput,
+      removeInput,
+      save,
+      editBlogData
     }
   }
 }
@@ -75,7 +149,7 @@ body {
 }
 
 #blog-editor p {
-  font-size: small;
+  font-size: large;
 }
 
 #markdown-input {
@@ -147,5 +221,60 @@ header {
   margin-top: 10px;
   padding: 10px;
   box-sizing: border-box;
+}
+
+#keyword {
+  width: 90%;
+  max-width: 600px;
+  margin: 10px auto;
+}
+#keyword p {
+  margin: 10px 5px 0;
+}
+#keyword .input-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+#keyword .input-group {
+  display: flex;
+  align-items: center;
+  margin: 10px auto;
+}
+
+#keyword .input-group input,
+#keyword .input-group textarea {
+  margin-right: 10px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#keyword button {
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  width: 30px;
+}
+
+#keyword button:hover {
+  background-color: #e0e0e0;
+}
+
+#keyword .add-keyword {
+  background-color: #28a745;
+  color: white;
+}
+
+#keyword .add-keyword.disabled {
+  background-color: #6c757d;
+  cursor: not-allowed;
+}
+
+#keyword .remove-keyword {
+  background-color: #dc3545;
+  color: white;
 }
 </style>

@@ -20,8 +20,9 @@ header {
   background-color: #098db5;
   color: white;
   padding: 10px 0;
-  margin-top: -3%;
+  margin-top: 0;
   margin-bottom: 20px;
+  width: auto;
 }
 
 #title {

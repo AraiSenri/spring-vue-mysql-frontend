@@ -1,7 +1,7 @@
-import './assets/main.css'
+// import './assets/main.css'
 import './assets/header-sample.css'
-import './assets/base-style.css'
-import './assets/reset.min.css'
+// import './assets/base-style.css'
+// import './assets/reset.min.css'
 
 import { createApp } from 'vue'
 import App from './App.vue'
